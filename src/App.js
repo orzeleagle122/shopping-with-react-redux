@@ -5,6 +5,11 @@ import Navbar from './components/Navbar';
 import cartItems from "./cart-items";
 import React from 'react';
 import {createStore} from 'redux';
+import {
+  DECREASE,
+  INCREASE
+} from './actions';
+import {reducer} from './reducers';
 
 //initial store
 const initialStore={
@@ -14,37 +19,12 @@ const initialStore={
 
 //store
 const store = createStore(reducer,initialStore);
-store.dispatch({type:'DECREASE'})
-store.dispatch({type:'INCREASE'})
-store.dispatch({type:'INCREASE'})
-store.dispatch({type:'CHANGE_NAME'})
+store.dispatch({type:DECREASE})
+store.dispatch({type:INCREASE})
+store.dispatch({type:INCREASE})
 
-//reducer(old-state,action) return update or old state
-function reducer(state=initialStore,action){
-  console.log({state,action});
-  switch(action.type){
-    case 'DECREASE':
-      console.log(state);
-      return {
-        ...state, 
-        count:state.count-1
-      }
-    case 'INCREASE':
-      console.log(state);
-      return {
-        ...state, 
-        count:state.count+1,
-      }
-    case 'CHANGE_NAME':
-      console.log(state.name);
-      return {
-        ...state, 
-        name:'bobo',
-      }
-    default:
-      return state
-  }
-}
+
+
 
 
 
